@@ -26,13 +26,15 @@ sigma = zeros(1, size(X, 2));
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
 
+% ms is a raw vector with the mean of each feature.
+mu = mean(X);
 
+% sigma is the same but for standard deviation
+sigma = std(X);
 
-
-
-
-
-
+for i = 1:size(X,2),
+	X_norm(:, i) = (X(:,i) - mu(i)) / sigma(i);
+end
 
 % ============================================================
 
