@@ -18,18 +18,18 @@ for iter = 1:num_iters
     %       of the cost function (computeCost) and gradient here.
     %
     
-    % vector x with alL the population of the cities.
-    % x0(i) is always 1 = X(:,1)
-    % x1(i) value of feature 1 for the ith example. X(:,2)
-    x = X(:,2);
-    
-    %h is a vector that contains the values of the hypothesis for each trainig example.
-    h = theta(1) + (theta(2)*x);
-    
-    t0 = theta(1) - alpha * (1/m) * sum(h-y);
-    t1  = theta(2) - alpha * (1/m) * sum((h - y) .* x);
-    
-    theta = [t0; t1];
+    % X mxn matrix
+    % theta nx1 vector
+    % h = hypothesis mx1 vector 
+    h = X * theta;
+
+    % y = mx1 vector of values
+    % d = decrement
+    d =  (alpha * (1/m) * (h - y)' * X);
+
+    theta = theta - d';
+
+
     % ============================================================
 
     % Save the cost J in every iteration    

@@ -17,14 +17,16 @@ for iter = 1:num_iters
     %       of the cost function (computeCostMulti) and gradient here.
     %
 
+    % X mxn matrix
+    % theta nx1 vector
+    % h = hypothesis mx1 vector 
+    h = X * theta;
 
+    % y = mx1 vector of values
+    % d = decrement
+    d =  (alpha * (1/m) * (h - y)' * X);
 
-
-
-
-
-
-
+    theta = theta - d';
 
 
     % ============================================================

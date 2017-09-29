@@ -106,7 +106,10 @@ fprintf('\n');
 % not need to be normalized.
 price = 0; % You should change this
 
+normalizedSquareFeet = (1650 - mu) / sigma;
+normalizedNumberOfBedrooms = (3 - mu) / sigma;
 
+price = [1, normalizedSquareFeet, normalizedNumberOfBedrooms] *theta;
 % ============================================================
 
 fprintf(['Predicted price of a 1650 sq-ft, 3 br house ' ...
@@ -149,8 +152,7 @@ fprintf('\n');
 
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
-price = 0; % You should change this
-
+price = [1, 1650, 3] * theta;
 
 % ============================================================
 
