@@ -20,22 +20,13 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
-%hypothesis = 1/(1-exp(theta' * X))
-%h = sigmoid(X*theta);
-hypothesis = sigmoid(theta' * X)
-
-% J = (1/m) * y * (-log(hypothesis)) + (1 - y)* (-log(1 - hypothesis))
-% J = (1/m) * -y * log(hypothesis) - (1 - y) * log(1 - hypothesis)
-
-% y = 1 => -log(hx) 
-% y = 0 => -log(1 - hx)
+% X matrix 100x3, theta vector 3x1 => hypothesis vector 100x1
+hypothesis = sigmoid(X * theta);
 
 % A vectorize implementation
-J = (1/m)*(-y'*log(hypothesis) - (1 - y)'*log(1-hypothesis))
-%J = (1/m)*(-y'* log(h) - (1 - y)'* log(1-h));
+J = (1/m)*(-y'*log(hypothesis) - (1 - y)'*log(1-hypothesis));
 
-grad = (1/m)*X'*(hypothesis - y)
-
+grad = (1/m)*X'*(hypothesis - y);
 
 % =============================================================
 
