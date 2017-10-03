@@ -26,15 +26,9 @@ shift_theta = theta(2:size(theta));
 theta_reg = [0;shift_theta];
 
 % A vectorize implementation
-J = (-(1/m)*(y'*log(hypothesis) + (1 - y)'*log(1-hypothesis))) + (lambda/2*m)*theta_reg'*theta_reg;
 
-%J = (1/m)*(-y'* log(h) - (1 - y)'*log(1-h))+(lambda/(2*m))*theta_reg'*theta_reg;
+J = (1/m)*(-y'* log(hypothesis) - (1 - y)'*log(1-hypothesis))+(lambda/(2*m))*theta_reg'*theta_reg;
 
-% grad_zero = (1/m)*X(:,1)'*(h-y);
-% grad_rest = (1/m)*(shift_x'*(h - y)+lambda*shift_theta);
-% grad      = cat(1, grad_zero, grad_rest);
-
-%grad = (1/m)*(X'*(h-y)+lambda*theta_reg);
 grad = (1/m)*(X'*(hypothesis-y)+lambda*theta_reg);
 
 % =============================================================
