@@ -30,9 +30,9 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
-
-
-
+% B matrix de m x size(all_theta, 1) = mx10
+B = sigmoid(X*all_theta');
+[m, p] = max(B, [], 2);
 
 
 
