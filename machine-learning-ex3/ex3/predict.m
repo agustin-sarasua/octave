@@ -21,7 +21,24 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+% X has size 5000 x 401
+% Theta1 has size 25 x 401
+% Theta2 has size 10 x 26
 
+X = [ones(m, 1) X];
+
+% 25 units in the hidden layer and 10 units in the output layer.
+
+B = sigmoid(Theta1*X');
+B = B';
+% X = [ones(m, 1) B];
+B = [ones(size(B,1),1) B];
+% B has size 25 + 1 x 5000
+
+C = sigmoid(B * Theta2');
+% C has size 26 x 10
+
+[m, p] = max(C, [], 2);
 
 
 

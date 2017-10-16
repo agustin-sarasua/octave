@@ -62,23 +62,40 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+% Return the cost without regularization.
+
+% We know that we have 3 layers.
+% a1 size 5000 x 401
+a1 = [ones(m, 1) X];
+% Theta1 size 25 x 401
+z2 = a1 * Theta1';
+% a2 size = 5000 x 26
+m_a2 = size(z2, 1);
+a2 = [ones(m_a2, 1) sigmoid(z2)];
+
+% Theta2 size 10 x 26
+z3 = a2 * Theta2';
+% a3 size 5000 x 10
+a3 = sigmoid(z3);
+hx = a3;
 
 
+% y vector 5000 x 1
+I = eye(num_labels);
+Y = zeros(m,num_labels);
+for i=1:m
+	Y(i, :)=I(y(i), :);
+end;
 
+% REGULATIZATION TERM
 
+sum1 = sum(sum(Theta1(:, 2:size(Theta1, 2)).^2));
+sum2 = sum(sum(Theta2(:, 2:size(Theta2, 2)).^2));
+rt = (lambda/(2*m))*(sum1 + sum2);
 
+% COST FUNCTION WITH REGULATIZATION TERM
 
-
-
-
-
-
-
-
-
-
-
-
+J = (1/m) * sum(sum((-Y) .* log(hx) - ((1-Y) .* log(1 - hx)), 2)) + rt;
 
 % -------------------------------------------------------------
 
