@@ -99,6 +99,37 @@ J = (1/m) * sum(sum((-Y) .* log(hx) - ((1-Y) .* log(1 - hx)), 2)) + rt;
 
 % BACKPROPAGATION to compute de GRADIENT so we can use an advanced optimizer such as fmincg
 
+% delta(l)j are the error terms that measures how much a node was responsible for any error on our output.
+% delta3 could be directly compute (hx - y) is the error associated with the output layer
+
+% hx m x 10
+% Y m x 10
+delta3 = hx .- Y;
+
+% delta3 m x 10
+% Theta2 10 x 26
+% z2 = m x 25
+% Theta2_no_bias = 10 x 26
+Theta2_no_bias = Theta2(:, 2:size(Theta2, 2));
+delta2 = (delta3 * Theta2_no_bias) .* sigmoidGradient(z2);
+
+% ACCUMULATE THE GRADIENTs
+
+%a1_no_bias = a1(:, 2:size(a1, 2));
+%a2_no_bias = a2(:, 2:size(a2, 2));
+
+
+% delta2 		m x 25 
+% delta3 		m x 10
+% a1_no_bias 	m x 400
+% a2_no_bias 	m x 25
+
+D1 = (delta2'*a1);
+D2 = (delta3'*a2);
+
+
+Theta1_grad = (D1./m);
+Theta2_grad = (D2./m);
 
 
 % -------------------------------------------------------------
