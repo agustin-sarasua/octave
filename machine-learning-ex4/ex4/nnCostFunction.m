@@ -62,7 +62,7 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
-% Return the cost without regularization.
+% FEEDFORWARD
 
 % We know that we have 3 layers.
 % a1 size 5000 x 401
@@ -96,6 +96,10 @@ rt = (lambda/(2*m))*(sum1 + sum2);
 % COST FUNCTION WITH REGULATIZATION TERM
 
 J = (1/m) * sum(sum((-Y) .* log(hx) - ((1-Y) .* log(1 - hx)), 2)) + rt;
+
+% BACKPROPAGATION to compute de GRADIENT so we can use an advanced optimizer such as fmincg
+
+
 
 % -------------------------------------------------------------
 
