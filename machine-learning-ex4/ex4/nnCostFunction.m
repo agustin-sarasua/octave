@@ -127,9 +127,11 @@ delta2 = (delta3 * Theta2_no_bias) .* sigmoidGradient(z2);
 D1 = (delta2'*a1);
 D2 = (delta3'*a2);
 
+p1 = (lambda/m)*[zeros(size(Theta1, 1), 1) Theta1(:, 2:end)];
+p2 = (lambda/m)*[zeros(size(Theta2, 1), 1) Theta2(:, 2:end)];
 
-Theta1_grad = (D1./m);
-Theta2_grad = (D2./m);
+Theta1_grad = (D1./m) + p1;
+Theta2_grad = (D2./m) + p2;
 
 
 % -------------------------------------------------------------
