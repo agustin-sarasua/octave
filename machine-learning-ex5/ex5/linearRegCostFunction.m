@@ -21,15 +21,15 @@ grad = zeros(size(theta));
 
 h = X * theta;
 
-theta = [0; theta(2,:)]
+theta = [0; theta(2,:)];
 
-rt =(lambda/(2*m))*sum(theta.^2);
+rt =(lambda/(2*m))*sum(theta(2,:).^2);
 
 J = (1/(2*m)) * sum((h - y).^2) + rt;
 
 % The regularized gradient term is theta scaled by (lambda / m)
 
-rtg = (lambda/m) * theta;
+rtg = (lambda/m) * theta(2,:);
 grad = ((1/m) * (h - y)' * X) + rtg';
 
 % =========================================================================
