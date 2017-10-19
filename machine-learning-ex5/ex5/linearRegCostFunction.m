@@ -21,16 +21,20 @@ grad = zeros(size(theta));
 
 h = X * theta;
 
-theta = [0; theta(2,:)];
+theta = [0;theta(2:end, :);];
+%theta = [0; theta(2,:)];
+%size(theta)
 
-rt =(lambda/(2*m))*sum(theta(2,:).^2);
+rt =(lambda/(2*m))*sum(theta' * theta);
 
 J = (1/(2*m)) * sum((h - y).^2) + rt;
 
 % The regularized gradient term is theta scaled by (lambda / m)
 
-rtg = (lambda/m) * theta(2,:);
-grad = ((1/m) * (h - y)' * X) + rtg';
+rtg = (lambda/m) * theta;
+grad = ((1/m) * X' * (h - y)) + rtg;
+%theta_reg = [0;theta(2:end, :);];
+% X 12x9  , y 12 x 1 => 2x1 / rgt 2x1
 
 % =========================================================================
 
