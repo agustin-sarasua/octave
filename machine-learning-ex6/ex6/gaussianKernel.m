@@ -16,7 +16,9 @@ sim = 0;
 %
 %
 
-
+dif = x1 - x2;
+%size(dif)
+sim = exp(-(dif' * dif) ./ (2 * sigma.^2));
 
 
 

@@ -23,11 +23,25 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+t = [0.01 0.03 0.1 0.3 1 3 10 30];
 
+res = zeros(length(t)^2,3);
 
+count = 1;
+for i = 1:length(t)
+	C1 = t(i);
+	for j = 1:length(t)
+		sigma1 = t(j);
+		model = svmTrain(X, y, C1, @(x1, x2) gaussianKernel(x1, x2, sigma1)); 	
+		predictions = svmPredict(model, Xval);
+		res(count,:) = [mean(double(predictions ~= yval)) C1 sigma1];
+		count = count + 1;
+	end;
+end;
 
-
-
+[m idx] = min(res(:,1))
+C = res(idx, 2)
+sigma = res(idx, 3)
 
 % =========================================================================
 
