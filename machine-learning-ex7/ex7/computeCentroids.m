@@ -25,9 +25,14 @@ centroids = zeros(K, n);
 %
 % Note: You can use a for-loop over the centroids to compute this.
 %
-
-
-
+size(X)
+size(idx)
+K
+p = [idx X];
+for c=1:K
+	a = p(p(:,1)==c, :);
+	centroids(c,:) = sum(a)(:,[2:end])/size(a,1);
+end;
 
 
 

@@ -21,8 +21,15 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
-
-
+% X 300x2 centroids 3x2
+for i=1:size(X, 1)
+	n = zeros(size(centroids,1),1);
+	for c=1:size(centroids ,1)
+		n(c) = norm(X(i,:) - centroids(c,:), 2);
+	end;
+	[vv, ii] = min(n);
+	idx(i) = ii;
+end;
 
 
 
