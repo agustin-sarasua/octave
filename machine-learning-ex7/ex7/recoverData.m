@@ -22,6 +22,21 @@ X_rec = zeros(size(Z, 1), size(U, 1));
 %               
 
 
+% n x n
+size(U)
+
+% m x k
+size(Z)
+
+% U_reduce n x k
+U_reduce = U(:, 1:K);
+
+% n x k
+size(U_reduce)
+
+% (m x k) * (n x k) = (m x n)
+X_rec = Z * U_reduce';
+
 
 % =============================================================
 

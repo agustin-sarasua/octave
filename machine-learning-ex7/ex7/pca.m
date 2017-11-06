@@ -21,8 +21,12 @@ S = zeros(n);
 %
 
 
+%Sigma is the covariance matrix of the data  (n x n)
+Sigma = (1/m)*(X'*X);
 
-
+% U is the eigenvectors. These will correspond to the principal components of variation in the data.
+% S will contain a diagonal matrix
+[U, S, V] = svd(Sigma);
 
 
 
