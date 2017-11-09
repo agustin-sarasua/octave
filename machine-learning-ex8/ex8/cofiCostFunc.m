@@ -54,12 +54,15 @@ B = Y .* R;
 
 J = (1/2)*sum(sum((A .- B).^2));
 
+J = (1/2)*sum(sum((A .- B).^2)) + (lambda / 2) * sum(sum((Theta.^2))) + (lambda / 2)* sum(sum((X.^2)));
 
+X_grad = (A .-B)*Theta;
 
+X_grad = (A .-B)*Theta + X .* lambda;
 
+Theta_grad = ((A .-B)'*X);
 
-
-
+Theta_grad = ((A .-B)'*X) + Theta .* lambda;
 
 
 
